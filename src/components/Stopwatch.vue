@@ -1,6 +1,9 @@
 <template>
     <div>
-        <h1 class="title">{{ elapsed | format('M:ss:L') }}</h1>
+        <h1 class="title">
+            {{ elapsedHours ? elapsedHours + ':' : '' }}<!--
+            -->{{ elapsed | format('M:ss:L') }}
+        </h1>
 
         <div v-show="!startingTime">
             <button @click="start" class="button">Start</button>
@@ -57,10 +60,14 @@ export default {
             if (this.pausedAt) {
                 return new Date(this.pausedAt - this.startingTime);
             } else if (this.startingTime) {
-                return this.difference(this.$root.now, this.startingTime);
+                return this.$root.now - this.startingTime;
             }
 
-            return this.utc(0);
+            return new Date(0);
+        },
+
+        elapsedHours() {
+            return Math.floor(this.elapsed / 1000 / 60 / 60);
         },
     },
 };
