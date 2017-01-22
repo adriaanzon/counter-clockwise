@@ -19,10 +19,10 @@
 
 <script>
 import TimeHelpers from '../mixins/TimeHelpers';
-import SaveStateWithCasts from '../mixins/SaveStateWithCasts';
+import SaveState from 'vue-save-state'
 
 export default {
-    mixins: [TimeHelpers, SaveStateWithCasts],
+    mixins: [TimeHelpers, SaveState],
 
     data() {
         return {
@@ -50,7 +50,10 @@ export default {
         getSaveStateConfig() {
             return {
                 cacheKey: 'Stopwatch',
-                casts: { startingTime: Date, pausedAt: Date },
+                onLoad(key, value) {
+                    return (key === 'startingTime' || key === 'pausedAt') && value !== null
+                        ? new Date(value) : value;
+                },
             };
         },
     },
