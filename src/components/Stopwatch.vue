@@ -19,43 +19,43 @@
 
 <script>
 import TimeHelpers from '../mixins/TimeHelpers';
-import SaveState from 'vue-save-state'
+import SaveState from 'vue-save-state';
 
 export default {
     mixins: [TimeHelpers, SaveState],
 
-    data() {
-        return {
-            startingTime: null,
-            pausedAt: null,
-        };
-    },
+    data: () => ({
+        startingTime: null,
+        pausedAt: null,
+    }),
 
     methods: {
         start() {
             this.startingTime = new Date();
         },
+
         stop() {
             this.startingTime = null;
             this.pausedAt = null;
         },
+
         pause() {
             this.pausedAt = new Date();
         },
+
         resume() {
             let diff = this.pausedAt - this.startingTime;
             this.startingTime = new Date(new Date - diff);
             this.pausedAt = null;
         },
-        getSaveStateConfig() {
-            return {
-                cacheKey: 'Stopwatch',
-                onLoad(key, value) {
-                    return (key === 'startingTime' || key === 'pausedAt') && value !== null
-                        ? new Date(value) : value;
-                },
-            };
-        },
+
+        getSaveStateConfig: () => ({
+            cacheKey: 'Stopwatch',
+            onLoad(key, value) {
+                return (key === 'startingTime' || key === 'pausedAt') && value !== null
+                    ? new Date(value) : value;
+            },
+        }),
     },
 
     computed: {

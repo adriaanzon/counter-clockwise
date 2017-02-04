@@ -21,15 +21,11 @@ import Clock from './components/Clock';
 import Stopwatch from './components/Stopwatch';
 
 export default {
-    name: 'app',
     components: {
         Tabs,
         TabPane,
         Clock,
         Stopwatch,
-    },
-    data() {
-        return {};
     },
 };
 </script>
