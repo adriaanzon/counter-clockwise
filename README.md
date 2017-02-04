@@ -1,4 +1,4 @@
-# Secondary
+# Counter Clockwise
 
 > Simple timer that remembers its state upon closing the browser
 

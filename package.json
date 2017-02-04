@@ -1,5 +1,5 @@
 {
-  "name": "Secondary",
+  "name": "counter-clockwise",
   "description": "Simple timer that remembers its state",
   "version": "0.0.1",
   "author": "Adriaan Zonnenberg <amz@adriaan.xyz>",
